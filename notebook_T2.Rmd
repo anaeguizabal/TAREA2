@@ -1,0 +1,176 @@
+
+Funciones en R
+Dentro de R vienen incluidas funciones pensadas para realizar las tareas mas comunes para las que fue diseñado como lenguaje.
+
+Algunas funciones ya programadasen R son algunas como:
+o	paste() pega vectores despu´es de convertirlos en caracteres
+choose(n, k) calcula las combinaciones de n en k, es decir n! (n−k)!k! 
+max(x) el m´aximo elemento de x 
+min(x) el m´ınimo elemento de x 
+range(x) calcula el rango, es decir c(min(x), max(x)) 
+sum(x) suma los elementos de x 
+diff(x) calcula la diferencia entre x[i] - x[i-1]
+prod(x) el producto de los elementos de x 
+round(x, n) redondea el elemento x a n decimales 
+cumsum(x) devuelve la suma acumulada del elemento x[1] hasta x[i] para i = 1, 2, . . . 
+cumprod(x) igual que cumsum() pero con el producto
+rowSums(x) suma los renglones de un objeto matriz; 
+colSums(x) lo mismo que rowSums() pero para las columnas
+
+Ejemplos
+
+```{r}
+a <- 5
+b <- 12
+c <- 8
+vector1 <- c(a,b,c)
+
+max(vector1)
+```
+Las Funciones incluidas en R no siempre cubren las necesidades de lo que se desea calcular para ellos R permite realizar funciones propias para ello se usa la sintaxis.
+
+Para crear una función propia 
+myfunction <- function(object1, object2, ... )
+statements
+return(newobject)
+}
+Para correr la función creada
+Output <- myfunction(data)
+
+Ejemplo se va a crear una funcion de maximo para (x,y) valores esto nos devolvera el valor maximo entre los 2 ingresados
+```{r}
+maximo <- function(x, y) {
+  if (x > y) {
+    m <- x
+  } else {
+    m <- y
+  }
+ return(m)
+}
+maximo(4,9)
+
+```
+Los argumentos son los valores de entrada 
+nombre_funcion <- function(arg1, arg2, ... ) {
+        # Código
+}
+
+en el ejemplo anterior los argumentos usados eran X y Y. Cuando se escribe una función en R tenemos que definir los argumentos que contiene. Si esos argumentos son cuantitativos o numéricos, a no ser que estén restringidos por una condición, pueden tomar cualquier valor. Pero si el argumento que estamos escribiendo solo puede adquirir un número finito de categorías, tenemos que acotar sus valores. 
+
+```{r}
+
+
+
+```
+
+
+Familias Aplly
+
+La familia de funciones apply es usada para aplicar una función a cada elemento de una estructura de datos. En particular, es usada para aplicar funciones en matrices, data frames, arrays y listas. Con esta familia de funciones podemos automatizar tareas complejas usando pocas líneas de código y es una de las características distintivas de R como lenguaje de programación.
+
+Función LAPPLY
+
+lapply() se aplica sobre listas o vectores y retorna una lista. La función tiene dos argumentos:
+
+X: Una lista o vector.
+FUN: La función que aplicaremos a X.
+
+Sintaxis de la función lapply
+lapply(X,   # Lista o vector
+       FUN, # Función a ser aplicada
+       ...) # Argumentos adicionales para ser pasados a FUN
+       
+```{r}
+x <- list(a = 1:10, beta = exp(-3:3), logico = c(TRUE,FALSE,FALSE,TRUE))
+x
+```
+       
+```{r}
+lapply(x,mean)
+```
+     
+FUNCION SAPPLY
+la función sapply en R aplica una función a un vector o lista y devuelve un vector, una matriz o un array. La función tiene la siguiente sintaxis:
+
+Sintaxis de la función sapply
+sapply(X,   # Vector o lista
+       FUN, # Función a ser aplicada       ..., 
+       # Argumentos adicionales para ser pasados a FUN
+       simplify = TRUE,  # Si FALSE devuelve una lista. Si "array" devuelve un array si es posible
+       USE.NAMES = TRUE) # Si TRUE y si X es un vector de caracteres, usa los nombres
+       
+Ejemplo se creara una lista y evolveremos el # de componetes en caa vector       
+       
+```{r}
+
+Lista <- list(A = 1:5, B = 6:20, C = 1)
+print(Lista)
+
+
+```
+```{r}
+sapply(Lista,length)
+```
+
+FUNCION VAPPLY
+Devuelve un vector con la longitud que tiene cada una de las listas introducidas como parámetro.
+
+```{r}
+test <- list(a = c(1, 3, 5), b = c(2,4,6), c = c(9,8,7))
+print(test)
+
+sapply(test, max)
+```
+
+
+```{r}
+datos <- data.frame (a = c (1, 3, 7, 12, 9),
+                   b = c (4, 4, 6, 7, 8),
+                   c = c (14, 15, 11, 10, 6))
+print(datos)
+```
+```{r}
+vapply(datos, FUN = length, FUN.VALUE = 0L)
+```
+
+```{r}
+lapply(datos,mean)
+```
+
+```{r}
+sapply(datos,max)
+```
+
+```{r}
+df <- data.frame(x = 1:4, y = 5:8, z = 10:13)
+print(df)
+```
+```{r}
+cuadrado <- function(x, character = FALSE) {
+  if (character == FALSE) {
+    x ^ 2
+  } else {
+    as.character(x ^2)
+  }
+}
+```
+
+
+```{r}
+apply(df,1,cuadrado)
+```
+
+
+convertir a caracteres la matriz
+```{r}
+apply(df, 1, cuadrado, character = TRUE)
+```
+
+
+
+
+`
+
+
+
+
